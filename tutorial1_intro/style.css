@@ -1,0 +1,31 @@
+body {
+    font-family: Times New Roman, serif;
+    padding: 0.5em;
+  }
+  
+  section {
+    padding: 0.3em 0;
+  }
+  
+  table {
+    border-collapse: collapse;
+  }
+  
+  th {
+    padding: 0 0.5em;
+  }
+  
+  tr {
+    border-bottom: solid 1.5px #6e4c4c;
+    line-height: 1.5;
+  }
+  
+  td {
+    text-align: center;
+    padding: 0 0.5em;
+    background-color: Silver;
+  }
+  
+  .high {
+    background-color: LightPink;
+  }
