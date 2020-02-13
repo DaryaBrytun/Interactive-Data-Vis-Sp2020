@@ -51,7 +51,6 @@ d3.csv("../data/squirrelActivities.csv", d3.autoType).then(data => {
     .attr("height", yScale.bandwidth())
     .attr("fill", function(d, i) { return color(i); });
 
-  // append text
   const text = svg
     .selectAll("text")
     .data(data)
