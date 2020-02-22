@@ -1,0 +1,158 @@
+country,region,happiness_score,economy
+Israel,Africa,7.267,1.33766
+United Arab Emirates,Africa,6.573,1.57352
+Saudi Arabia,Africa,6.379,1.48953
+Qatar,Africa,6.375,1.82427
+Algeria,Africa,6.355,1.05266
+Kuwait,Africa,6.239,1.61714
+Bahrain,Africa,6.218,1.44024
+Libya,Africa,5.615,1.06688
+Turkey,Africa,5.389,1.16492
+Jordan,Africa,5.303,0.99673
+Morocco,Africa,5.151,0.84058
+Lebanon,Africa,5.129,1.12268
+Tunisia,Africa,5.045,0.97724
+Iran,Africa,4.813,1.11758
+Palestinian Territories,Africa,4.754,0.67024
+Iraq,Africa,4.575,1.07474
+Egypt,Africa,4.362,0.95395
+Yemen,Africa,3.724,0.57939
+Syria,Africa,3.069,0.74719
+Mauritius,Africa,5.648,1.14372
+Somalia,Africa,5.44,0.45
+Somaliland Region,Africa,5.057,0.35558
+Nigeria,Africa,4.875,0.75216
+Zambia,Africa,4.795,0.61202
+Sierra Leone,Africa,4.635,0.36485
+Namibia,Africa,4.574,0.93287
+Cameroon,Africa,4.513,0.52497
+Ethiopia,Africa,4.508,0.29283
+South Africa,Africa,4.459,1.02416
+Kenya,Africa,4.356,0.52267
+Ghana,Africa,4.276,0.63107
+Congo (Kinshasa),Africa,4.272,0.05661
+Congo (Brazzaville),Africa,4.236,0.77109
+Senegal,Africa,4.219,0.44314
+Mauritania,Africa,4.201,0.61391
+Zimbabwe,Africa,4.193,0.35041
+Malawi,Africa,4.156,0.08709
+Sudan,Africa,4.139,0.63069
+Gabon,Africa,4.121,1.15851
+Mali,Africa,4.073,0.31292
+Botswana,Africa,3.974,1.09426
+Comoros,Africa,3.956,0.27509
+Ivory Coast,Africa,3.916,0.55507
+Angola,Africa,3.866,0.84731
+Niger,Africa,3.856,0.1327
+South Sudan,Africa,3.832,0.39394
+Chad,Africa,3.763,0.42214
+Burkina Faso,Africa,3.739,0.31995
+Uganda,Africa,3.739,0.34719
+Madagascar,Africa,3.695,0.27954
+Tanzania,Africa,3.666,0.47155
+Liberia,Africa,3.622,0.10706
+Guinea,Africa,3.607,0.22415
+Rwanda,Africa,3.515,0.32846
+Benin,Africa,3.484,0.39499
+Togo,Africa,3.303,0.28123
+Burundi,Africa,3.005,0.06831
+Taiwan,Asia,6.379,1.39729
+Japan,Asia,5.921,1.38007
+South Korea,Asia,5.835,1.35948
+Hong Kong,Asia,5.458,1.5107
+China,Asia,5.245,1.0278
+Mongolia,Asia,4.907,0.98853
+Singapore,Asia,6.739,1.64555
+Thailand,Asia,6.474,1.0893
+Malaysia,Asia,6.005,1.25142
+Indonesia,Asia,5.314,0.95104
+Philippines,Asia,5.279,0.81217
+Vietnam,Asia,5.061,0.74037
+Laos,Asia,4.876,0.68042
+Myanmar,Asia,4.395,0.34112
+Cambodia,Asia,3.907,0.55604
+Bhutan,Asia,5.196,0.8527
+Pakistan,Asia,5.132,0.68816
+Nepal,Asia,4.793,0.44626
+Bangladesh,Asia,4.643,0.54177
+Sri Lanka,Asia,4.415,0.97318
+India,Asia,4.404,0.74036
+Afghanistan,Asia,3.36,0.38227
+New Zealand,Australia and New Zealand,7.334,1.36066
+Australia,Australia and New Zealand,7.313,1.44443
+Czech Republic,Central and Eastern Europe,6.596,1.30915
+Slovakia,Central and Eastern Europe,6.078,1.27973
+Uzbekistan,Central and Eastern Europe,5.987,0.73591
+Kazakhstan,Central and Eastern Europe,5.919,1.22943
+Moldova,Central and Eastern Europe,5.897,0.69177
+Russia,Central and Eastern Europe,5.856,1.23228
+Poland,Central and Eastern Europe,5.835,1.24585
+Lithuania,Central and Eastern Europe,5.813,1.2692
+Belarus,Central and Eastern Europe,5.802,1.13062
+Slovenia,Central and Eastern Europe,5.768,1.29947
+Turkmenistan,Central and Eastern Europe,5.658,1.08017
+Latvia,Central and Eastern Europe,5.56,1.21788
+Romania,Central and Eastern Europe,5.528,1.1697
+Estonia,Central and Eastern Europe,5.517,1.27964
+Croatia,Central and Eastern Europe,5.488,1.18649
+Kosovo,Central and Eastern Europe,5.401,0.90145
+Azerbaijan,Central and Eastern Europe,5.291,1.12373
+Kyrgyzstan,Central and Eastern Europe,5.185,0.56044
+Serbia,Central and Eastern Europe,5.177,1.03437
+Bosnia and Herzegovina,Central and Eastern Europe,5.163,0.93383
+Montenegro,Central and Eastern Europe,5.161,1.07838
+Hungary,Central and Eastern Europe,5.145,1.24142
+Macedonia,Central and Eastern Europe,5.121,1.0193
+Tajikistan,Central and Eastern Europe,4.996,0.48835
+Albania,Central and Eastern Europe,4.655,0.9553
+Armenia,Central and Eastern Europe,4.36,0.86086
+Ukraine,Central and Eastern Europe,4.324,0.87287
+Georgia,Central and Eastern Europe,4.252,0.83792
+Bulgaria,Central and Eastern Europe,4.217,1.11306
+Costa Rica,Latin America and Caribbean,7.087,1.06879
+Puerto Rico,Latin America and Caribbean,7.039,1.35943
+Brazil,Latin America and Caribbean,6.952,1.08754
+Mexico,Latin America and Caribbean,6.778,1.11508
+Chile,Latin America and Caribbean,6.705,1.2167
+Panama,Latin America and Caribbean,6.701,1.18306
+Argentina,Latin America and Caribbean,6.65,1.15137
+Uruguay,Latin America and Caribbean,6.545,1.18157
+Colombia,Latin America and Caribbean,6.481,1.03032
+Guatemala,Latin America and Caribbean,6.324,0.83454
+Suriname,Latin America and Caribbean,6.269,1.09686
+Trinidad and Tobago,Latin America and Caribbean,6.168,1.32572
+Venezuela,Latin America and Caribbean,6.084,1.13367
+El Salvador,Latin America and Caribbean,6.068,0.8737
+Nicaragua,Latin America and Caribbean,5.992,0.69384
+Ecuador,Latin America and Caribbean,5.976,0.97306
+Belize,Latin America and Caribbean,5.956,0.87616
+Bolivia,Latin America and Caribbean,5.822,0.79422
+Peru,Latin America and Caribbean,5.743,0.99602
+Paraguay,Latin America and Caribbean,5.538,0.89373
+Jamaica,Latin America and Caribbean,5.51,0.89333
+Dominican Republic,Latin America and Caribbean,5.155,1.02787
+Honduras,Latin America and Caribbean,4.871,0.69429
+Haiti,Latin America and Caribbean,4.028,0.34097
+Canada,North America,7.404,1.44015
+United States,North America,7.104,1.50796
+Denmark,Western Europe,7.526,1.44178
+Switzerland,Western Europe,7.509,1.52733
+Iceland,Western Europe,7.501,1.42666
+Norway,Western Europe,7.498,1.57744
+Finland,Western Europe,7.413,1.40598
+Netherlands,Western Europe,7.339,1.46468
+Sweden,Western Europe,7.291,1.45181
+Austria,Western Europe,7.119,1.45038
+Germany,Western Europe,6.994,1.44787
+Belgium,Western Europe,6.929,1.42539
+Ireland,Western Europe,6.907,1.48341
+Luxembourg,Western Europe,6.871,1.69752
+United Kingdom,Western Europe,6.725,1.40283
+Malta,Western Europe,6.488,1.30782
+France,Western Europe,6.478,1.39488
+Spain,Western Europe,6.361,1.34253
+Italy,Western Europe,5.977,1.35495
+North Cyprus,Western Europe,5.771,1.31141
+Cyprus,Western Europe,5.546,1.31857
+Portugal,Western Europe,5.123,1.27607
+Greece,Western Europe,5.033,1.24886
