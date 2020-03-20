@@ -17,13 +17,12 @@ let state = {
   mousePosition: null,
 };
 
-var color = d3.scaleSequential([8,0], d3.interpolateMagma);
-
 /**
  * LOAD DATA
  * */
 d3.json("../../data/flare.json", d3.autotype).then(data => {
   state.data = data;
+  console.log(state.data)
   init();
 });
 
@@ -33,69 +32,57 @@ d3.json("../../data/flare.json", d3.autotype).then(data => {
  * */
 function init() {
   const container = d3.select("#d3-container").style("position", "relative");
+  const colorScale = d3.scaleOrdinal(d3.schemeSet3);
 
-   // + INITIALIZE TOOLTIP IN YOUR CONTAINER ELEMENT
-   tooltip = container
-   .append("div")
-   .attr("class", "tooltip")
-   .attr("width", 100)
-   .attr("height", 100)
-   .style("position", "absolute");
+  tooltip = container
+    .append("div")
+    .attr("class", "tooltip")
+    .attr("width", 100)
+    .attr("height", 100)
+    .style("position", "absolute");
 
   svg = container
     .append("svg")
     .attr("width", width)
     .attr("height", height);
 
- 
 
-    const colorScale = d3.scaleOrdinal(d3.schemeSet3);
 
-  // + CREATE YOUR ROOT HIERARCHY NODE
-  const root = pack()
-  (d3.hierarchy(state.data) // children accessor
+  // make hierarchy
+  const root = d3
+    .hierarchy(state.data) // children accessor
     .sum(d => d.value) // sets the 'value' of each level
-    .sort((a, b) => b.value - a.value));
+    .sort((a, b) => b.value - a.value);
 
+  // make treemap layout generator
+  const pack = d3
+    .pack()
+    .size([width -2, height-2])
+    .padding(4);
 
-  // + CREATE YOUR LAYOUT GENERATOR
-
-  // const tree = d3
-  // .treemap()
-  // .size([width, height])
-  // .padding(1)
-  // .round(true);
-
-  // + CALL YOUR LAYOUT FUNCTION ON YOUR ROOT DATA
-
-    // call our generator on our root hierarchy node
+  // call our generator on our root hierarchy node
   pack(root); // creates our coordinates and dimensions based on the heirarchy and tiling algorithm
 
-
-  // + CREATE YOUR GRAPHICAL ELEMENTS
-  const leaf = node.filter(d => !d.children);
-
-
-  const node = svg.selectAll("g")
-    .data(d3.nest().key (d=>
-      d.height).entries(root.descendants())
-    .join("g")
-      
+  // create g for each leaf
+  const leaf = svg
     .selectAll("g")
-    .data(d => d.values)
+    .data(root.leaves())
     .join("g")
-     .attr("transform", d => `translate(${d.x + 1},${d.y +1})`));
+    .attr("transform", d => `translate(${d.x +1},${d.y + 1})`);
 
-  node
+  leaf
     .append("circle")
-    .attr("fill", d => colorScale(d.height)
+    .attr("class", "nodeCircle")
+    .attr("fill", d => {
+      const level1Ancestor = d.ancestors().find(d => d.depth === 1);
+      return colorScale(level1Ancestor.data.name);
+    })
     .attr("r", d => d.r)
     .on("mouseover", d => {
       state.hover = {
         translate: [
-          // center top left corner of the tooltip in center of tile
-          d.x0 + (d.x1 - d.x0) / 2,
-          d.y0 + (d.y1 - d.y0) / 2,
+          d.x,
+          d.y,
         ],
         name: d.data.name,
         value: d.data.value,
@@ -106,19 +93,16 @@ function init() {
           .join("/")}`,
       };
       draw();
-    }));
+    });
 
   draw(); // calls the draw function
 }
-
 
 /**
  * DRAW FUNCTION
  * we call this everytime there is an update to the data/state
  * */
 function draw() {
-  // + UPDATE TOOLTIP
-
   if (state.hover) {
     tooltip
       .html(
