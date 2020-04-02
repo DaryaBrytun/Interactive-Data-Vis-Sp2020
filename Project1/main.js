@@ -5,7 +5,7 @@ const width = window.innerWidth * 0.7,
   margin = { top: 20, bottom: 70, left: 80, right: 40 },
   radius = 5,
   default_selection = "Select a Year";
-  // default_selection2 = "Select a Region";
+  default_selection2 = "Select a Region";
 
 // these variables allow us to access anything we manipulate in init() but need access to in draw().
 // All these variables are empty before we assign something to them.
@@ -53,11 +53,13 @@ function init() {
   circleScale = d3
   .scaleLinear()
   .domain(d3.extent(state.data, d => d.Population))
-  .range([3,30]);
+  .range([6,40]);
 
   // + AXES
 
-  var xAxis = d3.axisBottom(xScale).ticks(10, d3.format(".2s"));
+  var xAxis = d3.axisBottom(xScale)
+  .tickValues([400, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 200000])
+  .tickFormat(d3.format(".1s"));
   var yAxis = d3.axisLeft(yScale);
 
   // + UI ELEMENT SETUP
@@ -90,30 +92,20 @@ function init() {
 
   selectYear.property("value", default_selection);
 
-  // getting the YEAR data categories
-  // let yearTypes = new Set(d3.map(state.data,function(d) {return d.Year;}).keys());
-  // yearTypes.add("All");
-  // yearTypes.delete("Year");
-  // console.log(yearTypes);
-
-
-  // selectYear
-  // .selectAll("option")
-  // .data(Array.from(yearTypes)) // unique data values-- (hint: to do this programmatically take a look `Sets`)
-  // .join("option")
-  // .attr("value", d => d)
-  // .text(d => d);
 
   // add in dropdown options from the unique values in the data
   selectElement
     .selectAll("option")
-    .data(["All", "Asia", "Europe", "The Americas",
-    "Africa"]) // + ADD UNIQUE VALUES
+    .data(["Asia", "Europe", "The Americas",
+    "Africa", 
+    // "All", 
+    default_selection2,
+  ]) // + ADD UNIQUE VALUES
     .join("option")
     .attr("value", d => d)
     .text(d => d);
 
-  // selectElement.property("value", default_selection2);
+  selectElement.property("value", default_selection2);
   // // + CREATE SVG ELEMENT
 
   svg = d3
@@ -134,8 +126,8 @@ function init() {
   .attr("class", "axis-label")
   .attr("x", "50%")//location
   .attr("dy", "3em")//location
-  .attr("style", "fill: green")
-  .text("Income (GDP per capita)");
+  .attr("style", "fill: black")
+  .text("Economy (GDP per capita), $");
 
   svg
   .append("g")
@@ -147,57 +139,31 @@ function init() {
   .attr("y", "-5%")//location
   .attr("dx", "-250")//location
   .attr("transform", "rotate(-90)", "writing-mode: tb", "vertical-lr")   
-  .attr("style", "fill: green")
-  .text("Life Expectancy");
+  .attr("style", "fill: black")
+  .text("Life Expectancy, years");
 
-// var timeLabel = svg.append("text")
-//     .attr("y", height - 300)
-//     .attr("x", width - 300)
-//     .attr("font-size", "100px")
-//     .attr("opacity", "0.4")
-//     .attr("text-anchor", "middle")
-//     .text("1800");
 
   draw(); // calls the draw function
 }
 
 /* DRAW FUNCTION */
  // we call this everytime there is an update to the data/state
-function draw() {
-   // filter the data for the selectedParty
-  let filteredData = state.data;
-  // if there is a selectedParty, filter the data before mapping 
-  // it to our elements
-  if (state.selectedRegion !== "null") {
-    filteredData = state.data.filter(d => d.Region === state.selectedRegion);
-  if (state.selectedYear !== "null") {
-    filteredData = state.data.filter(d => d.Year === +state.selectedYear);
+
+  function draw() {
+    // filter the data for the selectedParty
+   let filteredData = state.data;
+ 
+
+
+  if (state.selectedRegion !== "null" && state.selectedYear !== "null") {
+    filteredData = state.data.filter(d => d.Region === state.selectedRegion && d.Year === +state.selectedYear  )
+
     }
-  }
-  // if (state.selectedYear !== "null") {
-  //   filteredData = state.data.filter(d => d.Year === +state.selectedYear);
-  // if (state.selectedRegion !== "null") {
-  //   filteredData = state.data.filter(d => d.Region === state.selectedRegion);
-  //   }
-  // }
 
-  // yScale.domain([0, d3.max(filteredData, d => d.Life_exp)]);
-
-  //   // re-draw our yAxix since our yScale is updated with the new data
-  // d3.select("g.y-axis")
-  //   .transition()
-  //   .duration(1000)
-  //   .call(yAxis.scale(yScale)); // this updates the yAxis' scale to be our newly updated one
-
-  // we define our line function generator telling it how to access the x,y values for each point
-  // const lineFunc = d3
-  //   .line()
-  //   .x(d => xScale(d.year))
-  //   .y(d => yScale(d.population));
 
   const dot = svg
     .selectAll(".dot")
-    .data(filteredData, d => d.Year)
+    .data(filteredData, d => `${d.Year}_${d.Region}`)
     .join(
       enter => 
       // enter selections -- all data elements that don't have a `.dot` element attached to them yet
@@ -252,13 +218,13 @@ function draw() {
         exit
         .transition()
         .delay(d => 50 * d.Income)
-        .duration(700)
+        .duration(10)
         .attr("r",6)
         .transition()
-        .duration(850)
+        .duration(10)
         .attr("fill", "#daa520")
         .transition()
-        .duration(300)
+        .duration(10)
         .attr("r", 2)
         .attr("cy", height)
         .delay(d => 50 * d.Income)
