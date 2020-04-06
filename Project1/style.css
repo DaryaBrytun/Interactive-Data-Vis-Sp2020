@@ -9,11 +9,11 @@ body {
 }
 
 .dot:hover {
-  fill: orange;
+  fill: #ff3333 ;
 }
 
 .axis-label {
-  font-size: 14px;
+  font-size: 18px;
   fill: black;
   text-anchor: middle;
 }
@@ -27,4 +27,17 @@ h1{
 h2{
   font-family: "Times New Roman", Times, serif;
   font-style: italic;
+}
+
+div.tooltip {
+  position: absolute;			
+  text-align: left;			
+  width: 150px;					
+  height: 80px;					
+  padding: 2px;				
+  font: 12px sans-serif;		
+  background: #D5DBDB ;	
+  border: 0px;		
+  border-radius: 8px;			
+  pointer-events: none;	
 }
