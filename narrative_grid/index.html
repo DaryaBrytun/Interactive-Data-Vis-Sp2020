@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <title>Narrative Data Visualization Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <header>
+      <h1>Narrative Data Visualization Template</h1>
+      <h2> Life Expectancy and What drives improvements in life expectancy?</h2>
+    </header>
+
+    <!-- <label for="dropdown">Select a Country</label>
+    <select id="dropdown" name="dropdown"></select> -->
+    <div>
+      <div class='section'>
+        Intro
+        Life expectancy is the key metric for assessing population health. 
+        It tells us the average age of death in a population.
+      </div>
+      <div class='section' id='one'>
+        <div class='text'>
+          Life Expectancy in the world today.
+
+        </div>
+ 
+        <div class='graph' id="d3-container-1"> </div>
+        <div class='tooltip' id="#tooltip"> </div>
+      </div>
+      <div class='section' id='two'>
+        <div class='text'>
+          How life expectancy changed over 90 years.
+          </div>
+       
+        <div class='graph' id="d3-container-2"> 
+          <label for="dropdown">Select a Country</label>
+          <select id="dropdown" name="dropdown"></select>
+        </div>
+        
+      </div>
+      <div class='section' id='three'>
+        <div class='text'>
+          What drives improvements in life expectancy?  Here I want to show the dependence between Life expectancy and health expenditure in the country and GDP per capita Ifrom Project 1)
+        </div>
+      </div>
+      <div class='section' id='four'>
+        <div class='graph' id="d3-container-3"> </div>
+      </div>
+    </div>
+
+
+    <script src="../../../lib/d3.js"></script>
+    <script src="./main.js" type="module"></script>
+  </body>
+</html>

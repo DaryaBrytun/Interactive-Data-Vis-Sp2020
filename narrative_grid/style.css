@@ -1,0 +1,67 @@
+header, body {
+  margin: 5%;
+}
+
+.section {
+  background-color: aliceblue;
+  margin: 5%;
+  height: auto;
+}
+
+.section#one {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 25% 25% 50%
+}
+
+.section#one > .text {
+  height: auto;
+  grid-column: 1 / 3;
+}
+
+.section#one > .graph {
+  grid-column: 3 / 4;
+}
+
+.section#two {
+  display: grid;
+  grid-column-gap: 10px;
+  grid-template-columns: 40% 60%;
+}
+
+.section#two > .text {
+  grid-column: 2 / 3;
+}
+
+.section#two > .graph {
+  grid-column: 0 / 2; 
+  grid-row: 1;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  min-height: 100px;
+}
+
+/* body {
+  /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
+  /* font-family: "Source Sans Pro", sans-serif;
+  padding: 1em 3em;
+} */ */
+
+#tooltip {
+  display: block;
+  height: fit-content;
+  position: absolute;
+  background-color: black;
+  pointer-events: none;
+  padding: 7px;
+  color: white;
+  font-size: 0.9em;
+}
+
+path.state {
+  stroke: black;
+}
+
