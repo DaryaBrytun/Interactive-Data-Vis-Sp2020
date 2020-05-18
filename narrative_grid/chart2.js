@@ -1,301 +1,235 @@
 export function chart2() {
-  const width = window.innerWidth * 0.3,
-  height = window.innerHeight * 0.3,
+  const width = window.innerWidth * 0.6,
+  height = window.innerHeight * 0.5,
   margin = { top: 20, bottom: 50, left: 60, right: 40 },
-  radius = 3,
-  default_selection = "Select a Country";
-
+  radius = 5,
+  default_selection = "Select a Year";
 
 let svg;
 let xScale;
-let y1Scale;
-let y2Scale;
-let y1Axis;
+let yScale;
+let circleScale;
 let tooltip;
-let legend;
 
-// const formatBillions = (num) => d3.format(".2s")(num).replace(/G/, 'B')
-
+const formatPopulation = d3.format(".2s")
 
 let state = {
   data: [],
-  selectedCountry: null,
+  selectedYear: "2017",
 };
 
-
-d3.csv("../../data/lifeExpGen.csv", d => ({
-  year: new Date(d.Year),
-  country: d.Country,
-  ratio: +d.Ratio,
-  female: +d.Female,
-  male: +d.Male,
+d3.csv("./data/LifeExpExpend.csv", d => ({
+    Year: +d.Year,
+    Country: d.Country,
+    Region: d.Region,
+    Population: +d.Population,
+    LifeExp: +d.LifeExp,
+    GDP: +d.GDP,
+    HealthExpend: +d.HealthExpend,
 })).then(raw_data => {
   console.log("raw_data", raw_data);
   state.data = raw_data;
   init();
 });
 
+
 function init() {
 
   xScale = d3
-    .scaleTime()
-    .domain(d3.extent(state.data, d => d.year))
-    .range([margin.left, width - margin.right]);
+  .scaleLog()
+  .domain(d3.extent(state.data, d => d.HealthExpend))
+  .range([margin.left, width - margin.right]);
 
-  y1Scale = d3
-    .scaleLinear()
-    .domain([0, d3.max(state.data, d => d.female)])
-    .range([height - margin.bottom, margin.top]);
+  yScale = d3
+  .scaleLinear()
+  .domain(d3.extent(state.data, d => d.LifeExp))
+  .range([height - margin.bottom, margin.top]);
 
-  y2Scale = d3
-    .scaleLinear()
-    .domain([0, d3.max(state.data, d => d.male)])
-    .range([height - margin.bottom, margin.top]);
-
-  const xAxis = d3.axisBottom(xScale);
-  y1Axis = d3.axisLeft(y1Scale);
-  // y2Axis = d3.axisRight(y2Scale);
+  circleScale = d3
+  .scaleLinear()
+  .domain(d3.extent(state.data, d => d.Population))
+  .range([8,50]);
 
  
-  const selectElement = d3
-  .select("#dropdown")
+  var xAxis = d3.axisBottom(xScale)
+  .tickValues([15, 30, 60, 100, 200, 300, 600, 1000, 2000, 3000, 5000, 10000])
+  .tickFormat(d3.format("$,"));
+  var yAxis = d3.axisLeft(yScale);
+  
+ var svgLegend = d3
+  .select("#my_dataviz")
+  .append("svg")
+  .attr("width",  400)
+  .attr("height", 150);
+
+//legend
+svgLegend.append("circle").attr("cx",20).attr("cy",10).attr("r", 6).style("fill", "#bc70a4")
+svgLegend.append("circle").attr("cx",20).attr("cy",25).attr("r", 6).style("fill", "#6b5b95")
+svgLegend.append("circle").attr("cx",20).attr("cy",40).attr("r", 6).style("fill", "#00a591")
+svgLegend.append("circle").attr("cx",20).attr("cy",55).attr("r", 6).style("fill", "#660066")
+svgLegend.append("circle").attr("cx",150).attr("cy",10).attr("r", 6).style("fill", "#9dea4f")
+svgLegend.append("circle").attr("cx",150).attr("cy",25).attr("r", 6).style("fill", "#faf20a")
+svgLegend.append("text").attr("x", 30).attr("y", 10).text("Europe").style("font-size", "15px").attr("alignment-baseline","middle")
+svgLegend.append("text").attr("x", 30).attr("y", 25).text("Africa").style("font-size", "15px").attr("alignment-baseline","middle")
+svgLegend.append("text").attr("x", 30).attr("y", 40).text("Asia").style("font-size", "15px").attr("alignment-baseline","middle")
+svgLegend.append("text").attr("x", 30).attr("y", 55).text("South America").style("font-size", "15px").attr("alignment-baseline","middle")
+svgLegend.append("text").attr("x", 160).attr("y", 10).text("North America").style("font-size", "15px").attr("alignment-baseline","middle")
+svgLegend.append("text").attr("x", 160).attr("y", 25).text("Oceania").style("font-size", "15px").attr("alignment-baseline","middle")
+
+  const years = Array.from(new Set(state.data.map(d => d.Year)))
+  d3.select(".slider_year")
+  .attr("min", d3.min(years))
+  .attr("max", d3.max(years))
   .on("change", function() {
-    console.log("new selected entity is", this.value);
-    state.selectedCountry = this.value;
+    console.log("new salected year is ", this.value);
+    state.selectedYear= this.value;
+    d3.select("#dropdown_year").property("value", this.value)
     draw(); 
   });
 
+  const selectYear = d3.select("#dropdown_year").on("change", function() {
+    console.log("new salected year is ", this.value);
+    state.selectedYear= this.value;
+    draw(); 
+  });
 
-  selectElement
-    .selectAll("option")
-    .data([
-      ...Array.from(new Set(state.data.map(d => d.country))),
-      default_selection,
-    ])
-    .join("option")
-    .attr("value", d => d)
-    .text(d => d);
+ selectYear
+  .selectAll("option")
+  .data([
+    ...Array.from(new Set(state.data.map(d => d.Year))), 
+    default_selection,
+  ])
+  .join("option")
+  .attr("value", d => d)
+  .text(d => d);
 
-  selectElement.property("value", default_selection);
+  selectYear.property("value", default_selection);
 
-  // svg = d3.
-  // select("#legend")
-
-  // // legend
-  // svg
-  // .append("circle")
-  // .attr("cx",30)
-  // .attr("cy",10)
-  // .attr("r", 4)
-  // .style("fill", "#69b3a2")
-
-  // svg
-  // .append("circle")
-  // .attr("cx",30)
-  // .attr("cy",20)
-  // .attr("r", 4)
-  // .style("fill", "#404080")
-  
-  // svg.append("text")
-  // .attr("x", 35)
-  // .attr("y", 10)
-  // .text("Male")
-  // .style("font-size", "12px")
-  // .attr("alignment-baseline","middle")
-
-  // svg
-  // .append("text")
-  // .attr("x", 35)
-  // .attr("y", 20)
-  // .text("Female")
-  // .style("font-size", "12px")
-  // .attr("alignment-baseline","middle")
-  
-
-// // TOOLTIP
-// div = d3
-// .select('body')
-// .append("div")
-// .attr("class", "tooltip")
-// .attr("width", 100)
-// .attr("height", 100)
-// .attr('style', 'position: absolute; opacity: 0;');
+  tooltip = d3
+  .select('#tooltip')
+  .attr("width", 100)
+  .attr("height", 100)
+  .attr('style', 'position: absolute;');
 
   svg = d3
-    .select("#d3-container-2")
-    .append("svg")
-    .attr("width", width)
-    .attr("height", height);
+  .select("#d3-container-2")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
 
-  // add the xAxis
+ 
   svg
-    .append("g")
-    .attr("class", "axis x-axis")
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(xAxis)
-    .append("text")
-    .attr("class", "axis-label")
-    .attr("x", "50%")
-    .attr("dy", "3em")
-    .text("Year");
+  .append("g")
+  .attr("class", "axis x-axis")
+  .attr("transform", `translate(0,${height - margin.bottom})`)
+  .call(xAxis)
+  .append("text")
+  .attr("class", "axis-label")
+  .attr("x", "50%")
+  .attr("dy", "3em")
+  .attr("style", "fill: black")
+  .text("Health Expenditure, $");
 
-  // add the yAxis
   svg
-    .append("g")
-    .attr("class", "axis y-axis")
-    .attr("transform", `translate(${margin.left},0)`)
-    .call(y1Axis)
-    // .call(y2Axis)
-    .append("text")
-    .attr("class", "axis-label")
-    .attr("y", "50%")
-    .attr("dx", "-3em")
-    .attr("writing-mode", "vertical-rl")
-    .text("Life Expectancy");
-
-  // svg
-  //   .append("g")
-  //   .attr("class", "axis y-axis")
-  //   .attr("transform", `translate(${margin.left},0)`)
-  //   // .style("fill", "red")
-  //   .call(y2Axis)
-  //   .append("text")
-  //   .attr("class", "axis-label")
-  //   .attr("y", "50%")
-  //   .attr("dx", "-3em")
-  //   .attr("writing-mode", "vertical-rl")
-  //   .text("Population");
-
+  .append("g")
+  .attr("class", "axis y-axis")
+  .attr("transform", `translate(${margin.left},0)`)
+  .call(yAxis)
+  .append("text")
+  .attr("class", "axis-label")
+  .attr("y", "-5%")
+  .attr("dx", "-150")
+  .attr("transform", "rotate(-90)", "writing-mode: tb", "vertical-lr")   
+  .attr("style", "fill: black")
+  .text("Life Expectancy, years");
   draw(); 
 }
 
-
-function draw() {
-
-  let filteredData;
-  if (state.selectedCountry !== null) {
-    filteredData = state.data.filter(d => d.country === state.selectedCountry);
-  }
-
-
-  y1Scale.domain([0, d3.max(filteredData, d => d.female)]);
-  y2Scale.domain([0, d3.max(filteredData, d => d.male)]);
-
-  d3.select("g.y-axis")
-    .transition()
-    .duration(1000)
-    .call(y1Axis.scale(y1Scale))
-    // .call(y2Axis.scale(y2Scale)); 
-
-  // https://bl.ocks.org/d3noob/e34791a32a54e015f57d
-  const lineFunc1 = d3
-    .line()
-    .x(d => xScale(d.year))
-    .y(d => y1Scale(d.female));
-
-  const lineFunc2 = d3
-    .line()
-    .x(d => xScale(d.year))
-    .y(d => y2Scale(d.male));
-
-  // const dot = svg
-  //   .selectAll(".dot")
-  //   .data(filteredData, d => d.year) // use `d.year` as the `key` to match between HTML and data elements
-  //   .join(
-  //     enter =>
-  //       // enter selections -- all data elements that don't have a `.dot` element attached to them yet
-  //       enter
-  //         .append("circle")
-  //         .attr("class", "dot") // Note: this is important so we can identify it in future updates
-  //         .attr("r", radius)
-  //         .attr("cy", height - margin.bottom) // initial value - to be transitioned
-  //         .attr("cx", d => xScale(d.year))
-  //         .on("mouseover", d => {
-  //           div.transition()
-  //           .duration(200)
-  //           .style('opacity', 1)
-  //           div.html("<strong>Country: </strong>" + d.country + 
-  //               // "<br/>"+ "<strong>Year: </strong>" + d.year +
-  //               "<br/>"+ "<strong>Female Life Expectancy: </strong>" + d.male + 
-  //               // "<br/>" + "<strong>GDP per Capita: </strong>"+ formatIncome(d.Income) + 
-  //               "<br/>" + "<strong>Male Life Expectancy: </strong>" + d.female)	
-  //                   .style("left", (d3.event.pageX) + "px")		
-  //                   .style("top", (d3.event.pageY - 28) + "px");	
-  //               })	
-  //        .on("mouseout", d => {
-  //         div.transition()
-  //         .duration(500)
-  //         .style('opacity', 0)
-  //        }),
-  //       //  .call(enter =>
-  //       //   enter
-  //       //     .transition() 
-  //       //     .delay(d => d.year) 
-  //       //     .duration(300)
-  //       //     .attr("r", d => d.female)
-  //       //   ),
-  //     update => update,
-  //     exit =>
-  //       exit.call(exit =>
-  //         // exit selections -- all the `.dot` element that no longer match to HTML elements
-  //         exit
-  //           .transition()
-  //           .delay(d => d.year)
-  //           .duration(500)
-  //           .attr("cy", height - margin.bottom)
-  //           .remove()
-  //       )
-  //   )
-  //   // the '.join()' function leaves us with the 'Enter' + 'Update' selections together.
-  //   // Now we just need move them to the right place
-  //   .call(
-  //     selection =>
-  //       selection
-  //         .transition() // initialize transition
-  //         .duration(1000) // duration 1000ms / 1s
-  //         .attr("cy", d => y1Scale(d.female)) // started from the bottom, now we're here
-  //   );
-
-
-    
-  const line1 = svg
-    .selectAll("path.trend")
-    .data([filteredData])
+  function draw() {
+   
+    let filteredData;
+   if (state.selectedYear !== null) {
+    filteredData = state.data.filter(d => d.Year === +state.selectedYear);
+    }
+   
+  const dot = svg
+    .selectAll(".dot")
+    .data(filteredData, d => d.Region)
     .join(
-      enter =>
+      enter => 
+      enter 
+      .append("circle")
+      .attr("class", "dot") 
+      .attr("id", d =>`${d.Year}_${d.Country}`)
+      .attr("stroke", "#444952")
+      .style('cursor', 'pointer')
+      .attr("opacity", 0.7)
+      .attr("fill", (d,i) => 
+      {
+        switch (d.Region){ 
+          case "Europe": return "#bc70a4";
+          break;
+          case "Africa": return "#6b5b95";
+          break;
+          case "Asia": return "#00a591";
+          break;
+          case "South America": return "#660066";
+          break;
+          case "North America": return "#9dea4f";
+          break;
+          case "Oceania": return "#faf20a";
+          break;
+        }})
+      .attr("cy", d => yScale(d.LifeExp))
+      .attr("cx", d => xScale(d.HealthExpend)) 
+      .on("click", function(d, i) {
+        console.log("clicking on", this);
+        d3.select(this)
+          .transition()
+          .attr('r', 20);
+      })
+      .on("mouseover", d => {
+        tooltip
+        .transition()
+        .duration(200)
+        .style('opacity', 1)
+        tooltip
+        .html("<strong>Country: </strong>" + d.Country + 
+            "<br/>"+ "<strong>Life Expectancy: </strong>" + d.LifeExp + 
+            "<br/>" + "<strong>Health Expenditure: </strong>"+ d.HealthExpend+
+            "<br/>" + "<strong>Population: </strong>" + formatPopulation(d.Population))	
+                .style("left", (d3.event.pageX) + "px")		
+                .style("top", (d3.event.pageY) + "px");	
+            })	
+     .on("mouseout", d => {
+      tooltip
+      .transition()
+      .duration(500)
+      .style('opacity', 0)
+     })
+      .call(enter =>
         enter
-          .append("path")
-          .attr("class", "trend")
-          // .style("fill", "#404080")
-          .attr("opacity", 0), 
-      update => update, 
-      exit => exit.remove()
-    )
-    .call(selection =>
-      selection
-        .transition() 
-        .duration(1000)
-        .attr("opacity", 1)
-        .attr("d", d => lineFunc1(d))
+          .transition() 
+          .delay(d => d.HealthExpend / 500) 
+          .duration(300)
+          .attr("r", d => circleScale(d.Population))
+        ),
+
+      update => 
+      update.call(update =>
+      update
+      .transition()
+      .duration(300)
+      .attr("cy", d => yScale(d.LifeExp))
+      .attr("cx", d => xScale(d.HealthExpend))
+      ), 
+
+      exit =>
+      exit.call(exit =>
+        exit.remove()
+      )
     );
-    const line2 = svg
-    .selectAll("path.trend")
-    .data([filteredData])
-    .join(
-      enter =>
-        enter
-          .append("path")
-          .attr("class", "trend")
-          // .style("fill", "#69b3a2")
-          .attr("opacity", 0),
-      update => update, 
-      exit => exit.remove()
-    )
-    .call(selection =>
-      selection
-        .transition() 
-        .duration(1000)
-        .attr("opacity", 1)
-        .attr("d", d => lineFunc2(d)))
-}
+    }
+   
+
 }

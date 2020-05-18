@@ -86,24 +86,24 @@ Year,Country,Region,Population,LifeExp,GDP,HealthExpend
 2015,Argentina,South America,43131966,76,13789,1794
 2016,Argentina,South America,43590368,76,12790,1521
 2017,Argentina,South America,44044811,76,14592,1917
-2000,Armenia,Aria,3069591,71,623,97
-2001,Armenia,Aria,3050687,72,694,121
-2002,Armenia,Aria,3033978,72,783,230
-2003,Armenia,Aria,3017932,72,930,254
-2004,Armenia,Aria,3000720,73,1192,244
-2005,Armenia,Aria,2981269,73,1644,280
-2006,Armenia,Aria,2958307,73,2158,328
-2007,Armenia,Aria,2932618,73,3139,363
-2008,Armenia,Aria,2907618,73,4011,482
-2009,Armenia,Aria,2888092,73,2994,534
-2010,Armenia,Aria,2877319,73,3218,606
-2011,Armenia,Aria,2876538,74,3526,658
-2012,Armenia,Aria,2884229,74,3682,699
-2013,Armenia,Aria,2897584,74,3838,827
-2014,Armenia,Aria,2912403,74,3986,857
-2015,Armenia,Aria,2925553,74,3607,886
-2016,Armenia,Aria,2936146,75,3592,880
-2017,Armenia,Aria,2944809,75,3915,1001
+2000,Armenia,Asia,3069591,71,623,97
+2001,Armenia,Asia,3050687,72,694,121
+2002,Armenia,Asia,3033978,72,783,230
+2003,Armenia,Asia,3017932,72,930,254
+2004,Armenia,Asia,3000720,73,1192,244
+2005,Armenia,Asia,2981269,73,1644,280
+2006,Armenia,Asia,2958307,73,2158,328
+2007,Armenia,Asia,2932618,73,3139,363
+2008,Armenia,Asia,2907618,73,4011,482
+2009,Armenia,Asia,2888092,73,2994,534
+2010,Armenia,Asia,2877319,73,3218,606
+2011,Armenia,Asia,2876538,74,3526,658
+2012,Armenia,Asia,2884229,74,3682,699
+2013,Armenia,Asia,2897584,74,3838,827
+2014,Armenia,Asia,2912403,74,3986,857
+2015,Armenia,Asia,2925553,74,3607,886
+2016,Armenia,Asia,2936146,75,3592,880
+2017,Armenia,Asia,2944809,75,3915,1001
 2000,Australia,Oceania,19153000,79,21679,2148
 2001,Australia,Oceania,19413000,80,19491,2268
 2002,Australia,Oceania,19651400,80,20082,2429
@@ -909,12 +909,6 @@ Year,Country,Region,Population,LifeExp,GDP,HealthExpend
 2009,Eritrea,Africa,3119920,62,595,60
 2010,Eritrea,Africa,3170435,62,668,48
 2011,Eritrea,Africa,3213972,63,811,63
-2012,Eritrea,Africa,..,63,..,47
-2013,Eritrea,Africa,..,64,..,47
-2014,Eritrea,Africa,..,64,..,48
-2015,Eritrea,Africa,..,65,..,49
-2016,Eritrea,Africa,..,65,..,54
-2017,Eritrea,Africa,..,66,..,59
 2000,Estonia,Europe,1396985,70,4076,485
 2001,Estonia,Europe,1388115,70,4509,492
 2002,Estonia,Europe,1379350,71,5345,547
@@ -1343,7 +1337,6 @@ Year,Country,Region,Population,LifeExp,GDP,HealthExpend
 2015,Iran,Asia,78492215,76,4916,1333
 2016,Iran,Asia,79564016,76,5266,1712
 2017,Iran,Asia,80673951,76,5628,1748
-2003,Iraq,Asia,25644499,69,..,182
 2004,Iraq,Asia,26313838,68,1392,355
 2005,Iraq,Asia,26922284,68,1856,281
 2006,Iraq,Asia,27448124,68,2373,260
@@ -2429,7 +2422,6 @@ Year,Country,Region,Population,LifeExp,GDP,HealthExpend
 2016,Samoa,Oceania,194535,73,4109,353
 2017,Samoa,Oceania,195352,73,4258,364
 2012,San Marino,Oceania,32105,85,56068,3966
-2000,Sao Tome and Principe,Africa,142262,61,..,182
 2001,Sao Tome and Principe,Africa,144755,62,525,177
 2002,Sao Tome and Principe,Africa,147447,63,578,177
 2003,Sao Tome and Principe,Africa,150415,63,679,223
@@ -2813,11 +2805,6 @@ Year,Country,Region,Population,LifeExp,GDP,HealthExpend
 2005,Syrian Arab Republic,Asia,18361176,74,1572,172
 2006,Syrian Arab Republic,Asia,19059258,74,1749,167
 2007,Syrian Arab Republic,Asia,19878254,74,2033,171
-2008,Syrian Arab Republic,Asia,20664038,74,..,161
-2009,Syrian Arab Republic,Asia,21205873,73,..,175
-2010,Syrian Arab Republic,Asia,21362529,72,..,169
-2011,Syrian Arab Republic,Asia,21082966,71,..,185
-2012,Syrian Arab Republic,Asia,20442541,71,..,160
 2000,Tajikistan,Asia,6216341,62,138,41
 2001,Tajikistan,Asia,6318513,63,171,46
 2002,Tajikistan,Asia,6426867,64,190,50
@@ -3154,9 +3141,6 @@ Year,Country,Region,Population,LifeExp,GDP,HealthExpend
 2012,Venezuela,South America,29362449,73,12986,1161
 2013,Venezuela,South America,29783571,73,12457,1023
 2014,Venezuela,South America,30045134,73,16054,1020
-2015,Venezuela,South America,30081829,73,..,847
-2016,Venezuela,South America,29846179,72,..,445
-2017,Venezuela,South America,29390409,72,..,141
 2000,Vietnam,Asia,79910412,73,390,98
 2001,Vietnam,Asia,80742499,73,405,125
 2002,Vietnam,Asia,81534407,73,430,107

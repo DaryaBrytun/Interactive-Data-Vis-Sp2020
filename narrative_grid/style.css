@@ -1,67 +1,178 @@
-header, body {
+header {
+  background-color: white;
+  text-align: center;
   margin: 5%;
 }
-
+svg {
+  width: 100%;
+  height: 100%;
+  min-height: 100px;
+}
+#my_dataviz {
+  width: 800px;
+  height: 80px;
+  min-height: 80px;
+}
 .section {
-  background-color: aliceblue;
   margin: 5%;
   height: auto;
 }
-
+.section#intro {
+  text-indent: 2.0em; 
+  text-align: justify;
+}
 .section#one {
+  text-indent: 2.0em; 
+  background-color: #f8f5f3;
   display: grid;
   grid-column-gap: 10px;
   grid-template-columns: 25% 25% 50%
 }
 
 .section#one > .text {
+  text-indent: 2.0em; 
+  text-align: justify;
   height: auto;
-  grid-column: 1 / 3;
+  grid-column: 1 / 2;
 }
 
 .section#one > .graph {
-  grid-column: 3 / 4;
+  background-color: #f8f5f3;
+  grid-column: 2 / 4;
+}
+*/
+
+.section#one > .graph > .path.country {
+  stroke: white;
 }
 
 .section#two {
+  background-color: #f8f5f3;
   display: grid;
   grid-column-gap: 10px;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 80% 20%
 }
 
 .section#two > .text {
+  text-indent: 2.0em; 
+  background-color: #f8f5f3;
+  text-align: justify;
+  height: auto;
   grid-column: 2 / 3;
 }
 
 .section#two > .graph {
-  grid-column: 0 / 2; 
+  background-color: #f8f5f3;
+  grid-column: 0 / 2;
   grid-row: 1;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 1em 3em;   
+  font-size: 12px 
+}
+.section#two > .graph > .dot {
+    cursor: pointer;
+    color: steelblue;
+    opacity: 0.5;
+}
+.section#three > .text {
+  text-indent: 2.0em; 
+  text-align: justify;
+  height: auto;
+  grid-column: 1 / 3;
+}
+.section#four > .text {
+  text-indent: 2.0em; 
+  text-align: justify;
+  height: auto;
+  grid-column: 1 / 3;
+}
+.section#four > .graph {
+  background-color: #f8f5f3;
+  grid-column: 3 / 4;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 1em 3em;   
+  font-size: 12px 
 }
 
-svg {
-  width: 100%;
-  height: 100%;
-  min-height: 100px;
+.section#four > .graph > .axis-label {
+  font-size: 14px;
+  fill: black;
+  text-anchor: middle;
 }
 
-/* body {
-  /* ref: https://fonts.google.com/specimen/Source+Sans+Pro?selection.family=Source+Sans+Pro */
-  /* font-family: "Source Sans Pro", sans-serif;
-  padding: 1em 3em;
-} */ */
+.section#five > .graph {
+  background-color: #f8f5f3;
+  grid-column: 3 / 4;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding: 1em 3em;   
+  font-size: 15px 
+}
+.section#five > .text {
+  text-align: justify;
+  text-indent: 2.0em; 
+  height: auto;
+  grid-column: 1 / 3;
+}
 
-#tooltip {
-  display: block;
-  height: fit-content;
-  position: absolute;
-  background-color: black;
-  pointer-events: none;
-  padding: 7px;
+#titleone {
+  color: black;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  padding: 1em 3em;   
+  font-size: 20px 
+}
+#titleone-2 {
+  color: black;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  padding: 1em 3em;   
+  font-size: 12px 
+}
+#titlethree {
+  color: black;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  padding: 1em 3em;   
+  font-size: 20px 
+}
+#titlefour {
+  color: black;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: bold;
+  padding: 1em 3em;   
+  font-size: 20px 
+}
+#byValue1 {
+  background-color: #0068ab;
   color: white;
-  font-size: 0.9em;
+  padding: 4px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+}
+#byCountry1 {
+  background-color: #0068ab;
+  color: white;
+  padding: 4px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
 }
 
-path.state {
-  stroke: black;
+#dropdown_year {
+  background-color: #0068ab;
+  color: white;
+  padding: 5px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
 }
-
+.section#two > .graph> .slider_year {
+  width: 100px;
+  height: 10px;
+  cursor: pointer;
+}

@@ -1,55 +1,115 @@
 <!DOCTYPE html>
   <head>
     <meta charset="utf-8">
-    <title>Narrative Data Visualization Template</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <title>Narrative Data Visualization</title>
+    <link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+    
     <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <header>
-      <h1>Narrative Data Visualization Template</h1>
-      <h2> Life Expectancy and What drives improvements in life expectancy?</h2>
+      <h1>Narrative Data Visualization:</h1>
+      <h1>Life Expectancy across the World</h1>
+  
+      <h2>Darya Brytun</h2>
     </header>
 
-    <!-- <label for="dropdown">Select a Country</label>
-    <select id="dropdown" name="dropdown"></select> -->
     <div>
-      <div class='section'>
-        Intro
-        Life expectancy is the key metric for assessing population health. 
-        It tells us the average age of death in a population.
-      </div>
-      <div class='section' id='one'>
-        <div class='text'>
-          Life Expectancy in the world today.
-
-        </div>
- 
-        <div class='graph' id="d3-container-1"> </div>
-        <div class='tooltip' id="#tooltip"> </div>
-      </div>
-      <div class='section' id='two'>
-        <div class='text'>
-          How life expectancy changed over 90 years.
-          </div>
-       
-        <div class='graph' id="d3-container-2"> 
-          <label for="dropdown">Select a Country</label>
-          <select id="dropdown" name="dropdown"></select>
-        </div>
-        
-      </div>
-      <div class='section' id='three'>
-        <div class='text'>
-          What drives improvements in life expectancy?  Here I want to show the dependence between Life expectancy and health expenditure in the country and GDP per capita Ifrom Project 1)
-        </div>
-      </div>
-      <div class='section' id='four'>
-        <div class='graph' id="d3-container-3"> </div>
-      </div>
+      <div class='section' id='intro'>
+       <p> Life expectancy is the key metric for assessing population health.
+        <b>Life expectancy at birth reflects the overall mortality level of a population</b>. It summarizes the mortality pattern that prevails across all age groups in a given year – children and adolescents, adults and the elderly. </p>
+        <p>Estimates suggest that in a pre-modern, poor world, <b>life expectancy was around 30 years in all regions of the world</b>. In the early 19th century, life expectancy started to increase in the early industrialized countries while it stayed low in the rest of the world. This led to a very high inequality in how health was distributed across the world. Good health in the rich countries and persistently bad health in those countries that remained poor. Over the last decades this global inequality decreased.</p>
     </div>
 
 
+      <div class='section' id='one'>
+        <div class='text'>
+          <p>Since 1900 the global average life expectancy has more than doubled and is now above <b>70 years</b>. The inequality of life expectancy is still very large across and within countries. </p>
+            <p><b>Global life expectancy at birth in 2018 was 72.6 years (74.2 years for females and 69.8 years for males)</b>, ranging from 61.4 years in the African Region to 77.6 years in the European Region, giving a ratio of 1.3 between the two regions.</p>
+          <p>In 2018 the country with the lowest life expectancy is the Central African Republic with 53.01 years, in Japan life expectancy is 30 years longer (84.55 years).     <br>Data: <a href="https://ourworldindata.org/life-expectancy#how-strong-is-the-link-between-healthcare-expenditure-and-life-expectancy">Our World in Data</a></p>
+     
+           <svg id="my_legend"></svg> 
+        </div>
+        <div class='graph' id="d3-container-1">
+           <div id='titleone'> Differences in life expectancy across the World, 2018 </div> 
+        </div>
+     </div>
+    </div>
+
+
+
+    <div class='section' id='three'>
+      <div class='text'>
+       <h2>What drives improvements in life expectancy? </h2> 
+
+        <p>One of the most important inputs to health is healthcare. One common way of measuring national healthcare consumption and production is to estimate aggregate <b>expenditure on healthcare</b>.
+        Health spending measures the final consumption of health care goods and services (i.e. current health expenditure) including personal health care and collective services, but excluding spending on investments. Health care is financed through <b>a mix of financing arrangements including government spending and compulsory health insurance as well as voluntary health insurance and private funds such as households’ out-of-pocket payments</b>. </p>
+      </div>
+    </div>
+        
+
+      <div class='section' id='two'>
+        <div class='text'>
+          <p>This visualization shows the cross-country relationship between life expectancy at birth and healthcare expenditure per capita at two points in time, about a generation apart (2000 and 2017 respectively). </p>
+          <p>The arrows connect these two observations, thereby showing the change over time of both measures for all countries in the world. </p>
+           <p>As it can be seen, <b>countries with higher expenditure on healthcare per person tend to have a higher life expectancy. Looking at the change over time, as countries spend more on health, life expectancy increases</b>.
+              <br>Data: <a href="https://ourworldindata.org/life-expectancy#how-strong-is-the-link-between-healthcare-expenditure-and-life-expectancy">Our World in Data</a></p> 
+          </div>
+        
+        <div class='graph' id="d3-container-2">
+        
+          <div id='titleone'> Life Expectancy and Health Expendirure, 2000 to 2017
+            <div id='titleone-2'>(Total healthcare expenditure per capita is adjusted for price differences between countries <br>and for inflation and
+            measured in international currency).</div> 
+          </div>  
+          <label for="dropdown_year">Select a year</label>
+          <select id="dropdown_year" name="dropdown_year"></select>
+          <input type="range" class = "slider_year">
+          
+         
+          <svg id="my_dataviz"></svg>
+          <div id="tooltip"></div>
+        </div>
+      </div>
+     
+      
+      <div class='section' id='four'>
+        <div class='text'>
+          <h2>Health Expenditure in the countries with the highest life expectancy</h2>
+          <p><b>American life expectancy is the lowest in the rich world, especially considering how much money is spent on health</b>. As per researchers at <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(16)32381-9/fulltext">Imperial College London and the World Health Organization</a>, that is partly because America is <b>the only country in the Organisation for Economic Co-operation and Development (OECD) that does not have universal health care, meaning poorer health for poorer people. It also has the highest maternal and child mortality rates, so fewer people reach old age. High obesity and homicide rates shorten lifespans as well</b>.</p>
+          <p>Compared with other developed countries, expenditure on health (measured in USD per capita spent on health by private and public sectors), is highest in the United States more $10,000.00. Switzerland is the next highest in expenditures more $8,000.00.
+          Including Switzerland, <b>other developed countries spend much less on health and have a higher life expectancy than the United States</b>. <br>Data: <a href="https://data.oecd.org/healthres/health-spending.htm">The Organisation for Economic Co-operation and Development (OECD)</a></p>
+
+          </div>
+          <button id="byCountry1"> Sort by Country</button>
+          <button id="byValue1"> Sort by Value</button>
+        <div class='graph' id="d3-container-3"> 
+          <div id='titlethree'> Total healthcare expenditure per capita, USD </div>
+        </div>
+      </div>
+    </div>
+  
+
+    <div class='section' id='five'>
+      <div class='text'>
+        <h2>Projections of  life expectancy</h2>
+        <p><a href="https://www.economist.com/graphic-detail/2017/02/23/longevity-in-rich-countries">Population forecasting is not simple.</a> Demographers use mortality data—information about when people die and why—to estimate the likely life expectancy of people still alive. <b>The UN, the World Health Organisation (WHO) and others produce periodic forecasts that are fairly similar</b>. Wealthy countries such as Japan, Switzerland and Australia have the highest life expectancies, though the estimates vary slightly depending on the methodology used. 
+        However, the researchers at Imperial College London and the World Health Organisation,  <a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(16)32381-9/fulltext">whose studies were published in the Lancet</a>, a medical journal, developed an ensemble of 21 forecasting models, all of which probabilistically contributed towards the final projections. They applied this approach to project age-specific mortality to 2030 in 35 industrialized countries with high-quality vital statistics data.They used age-specific death rates to calculate life expectancy at birth and at age 65 years, and probability of dying before age 70 years, with life table methods.</p>
+       <p><b>As per their funding life expectancy is projected to increase in all 35 industrialized countries with a probability of at least 65% for women and 85% for men. There is a 90% probability that life expectancy at birth among South Korean women in 2030 will be higher than 86.7 years, the same as the highest worldwide life expectancy in 2012, and a 57% probability that it will be higher than 90 years. Of the countries studied, the USA, Japan, Sweden, Greece, Macedonia, and Serbia have some of the lowest projected life expectancy gains for both men and women</b>.</p>
+       <br>Data: <a href="https://ourworldindata.org/life-expectancy#how-strong-is-the-link-between-healthcare-expenditure-and-life-expectancy">Our World in Data</a>
+        </div>
+        
+      <div class='graph' id="d3-container-4">
+      <div id='titlefour'> Future life expectancy in 35 industrialized countries </div>
+      <div id="tooltip"></div>
+    </div>
+     
+    
+  
+    </div>
+  </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.1/tinycolor.js"></script>
     <script src="../../../lib/d3.js"></script>
     <script src="./main.js" type="module"></script>
   </body>
